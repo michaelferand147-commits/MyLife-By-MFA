@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>MyLife By MFA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+            button,
+            .btn-primary,
+            .btn-secondary,
+            .btn-outline-sm,
+            .chip,
+             input[type="button"],
+             input[type="submit"] {
+            -webkit-tap-highlight-color: transparent;
+             outline: none;
+             user-select: none;
+}
+
+
+             button:focus,
+             .btn-primary:focus,
+             .btn-secondary:focus,
+             .btn-outline-sm:focus {
+             outline: none;
+             box-shadow: none;
+}
+
+
+             button:focus-visible {
+             outline: 1px solid #ffffff;
+             outline-offset: 2px;
+}
+        body {
+            background-color: #000000;
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #ffffff;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 24px 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Gaya untuk nama pengguna yang berbeda */
+        .username-highlight {
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #ffffff, #c0c0c0);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .greeting-line {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .sub-text {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            margin-top: 4px;
+        }
+
+        .text-secondary {
+            color: #a1a1aa;
+        }
+
+        .card {
+            background-color: #111111;
+            border: 1px solid #222222;
+            border-radius: 24px;
+            padding: 1.75rem;
+            transition: transform 0.15s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 0.85rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background-color: #e8e8e8;
+            transform: scale(0.99);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid #333333;
+            padding: 0.65rem 1.2rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 40px;
+            transition: all 0.15s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary:hover {
+            background-color: #1a1a1a;
+            border-color: #444444;
+        }
+
+        .btn-outline-sm {
+            background: transparent;
+            border: 1px solid #2c2c2c;
+            border-radius: 32px;
+            padding: 0.4rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #cccccc;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn-outline-sm:hover {
+            background-color: #1a1a1a;
+            border-color: #555555;
+        }
+
+        .chips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .chip {
+            background-color: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 40px;
+            padding: 8px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            color: #dddddd;
+        }
+
+        .chip.active {
+            background-color: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background-color: #0c0c0c;
+            border: 1px solid #2a2a2a;
+            border-radius: 20px;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            transition: border 0.15s;
+            text-align: center;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #ffffff;
+            background-color: #111111;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-size: 0.85rem;
+            color: #b0b0b8;
+        }
+
+        .meal-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .meal-card {
+            background: #0c0c0c;
+            border-radius: 20px;
+            padding: 1rem;
+            border-left: 3px solid #ffffff;
+            text-align: center;
+        }
+
+        .meal-time {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            color: #ffffff;
+        }
+
+        .meal-desc {
+            color: #b0b0b8;
+            font-size: 0.9rem;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000000;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #333;
+            border-top: 2px solid #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .rating-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 1.5rem 0;
+            justify-content: center;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1500;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: #111111;
+            border: 1px solid #2a2a2a;
+            border-radius: 28px;
+            width: 100%;
+            max-width: 520px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .favorite-item {
+            background: #0a0a0a;
+            border-radius: 20px;
+            padding: 0.9rem;
+            margin-bottom: 0.9rem;
+            border: 1px solid #222;
+            text-align: center;
+        }
+
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mt-4 { margin-top: 1.5rem; }
+        hr { border-color: #2a2a2a; margin: 1rem 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="onboardingScreen">
+        <div class="card">
+            <div class="logo">MyLife By MFA</div>
+            <div class="tagline">Healthy Body. Simple Life.</div>
+            <div style="height: 1.5rem;"></div>
+            <form id="onboardingForm">
+                <div class="form-group">
+                    <label>Nama pengguna</label>
+                    <input type="text" id="userName" autocomplete="off" required>
+                </div>
+                <div class="form-group">
+                    <label>Tujuan fitness</label>
+                    <select id="userGoal" required>
+                        <option value="fatloss">Fat Loss</option>
+                        <option value="recomp">Body Recomp</option>
+                        <option value="leanbulking">Lean Bulking</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Budget</label>
+                    <select id="userBudget" required>
+                        <option value="hemat">Hemat</option>
+                        <option value="sedang">Sedang</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Makanan yang tidak disukai</label>
+                    <div class="chips-grid" id="dislikesContainer"></div>
+                </div>
+                <button type="submit" class="btn-primary">Mulai</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboardScreen" style="display: none;">
+        <div class="flex-between" style="margin-bottom: 1rem;">
+            <div>
+                <div class="greeting-line" id="greetingLine"></div>
+                <div class="sub-text" id="subTextLine"></div>
+            </div>
+            <button id="resetButton" class="btn-outline-sm">Reset Data</button>
+        </div>
+
+        <button id="startSearchBtn" class="btn-primary" style="margin: 24px 0;">Mulai cari menu</button>
+
+        <div id="menuArea" style="display: none;">
+            <div class="meal-grid" id="mealList"></div>
+            <div class="button-group">
+                <button id="anotherMenuBtn" class="btn-secondary">Cari Menu Lain</button>
+                <button id="saveFavBtn" class="btn-secondary">Simpan Favorit</button>
+                <button id="viewFavBtn" class="btn-secondary">Lihat Favorit</button>
+            </div>
+            <div>
+                <span class="text-secondary" style="font-size: 0.8rem;">Rating menu ini:</span>
+                <div class="rating-group">
+                    <button id="rateLike" class="btn-outline-sm">Suka</button>
+                    <button id="rateOk" class="btn-outline-sm">Lumayan</button>
+                    <button id="rateDislike" class="btn-outline-sm">Kurang Suka</button>
+                </div>
+            </div>
+        </div>
+        <div id="noMenuMessage" class="card" style="display: none;">
+            <p class="text-secondary">Tidak ada menu yang cocok dengan filter Anda.</p>
+            <button id="forceResetBtn" class="btn-secondary mt-4">Reset Preferensi</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="favoriteModal" class="modal">
+    <div class="modal-content">
+        <div class="flex-between">
+            <h3>Menu Favorit</h3>
+            <button id="closeModalBtn" style="background:none; border:none; color:white; font-size:1.8rem; cursor:pointer;">&times;</button>
+        </div>
+        <hr>
+        <div id="favoriteList"></div>
+    </div>
+</div>
+
+<script>
+    
+    let allMenus = [];
+    let userProfile = null;
+    let last7Ids = [];
+    let ratings = {};
+    let favorites = [];
+    let currentMenu = null;
+
+    
+    const onboardingDiv = document.getElementById('onboardingScreen');
+    const dashboardDiv = document.getElementById('dashboardScreen');
+    const greetingLine = document.getElementById('greetingLine');
+    const subTextLine = document.getElementById('subTextLine');
+    const startBtn = document.getElementById('startSearchBtn');
+    const menuArea = document.getElementById('menuArea');
+    const mealListDiv = document.getElementById('mealList');
+    const noMenuDiv = document.getElementById('noMenuMessage');
+    const anotherBtn = document.getElementById('anotherMenuBtn');
+    const saveFavBtn = document.getElementById('saveFavBtn');
+    const viewFavBtn = document.getElementById('viewFavBtn');
+    const resetBtn = document.getElementById('resetButton');
+    const forceReset = document.getElementById('forceResetBtn');
+    const modal = document.getElementById('favoriteModal');
+    const closeModal = document.getElementById('closeModalBtn');
+    const rateLikeBtn = document.getElementById('rateLike');
+    const rateOkBtn = document.getElementById('rateOk');
+    const rateDislikeBtn = document.getElementById('rateDislike');
+
+    
+    function getGreetingText(name) {
+        const hour = new Date().getHours();
+        let greeting;
+        if (hour < 12) greeting = "Selamat Pagi";
+        else if (hour < 15) greeting = "Selamat Siang";
+        else if (hour < 19) greeting = "Selamat Sore";
+        else greeting = "Selamat Malam";
+        return `${greeting}, <span class="username-highlight">${name}</span>`;
+    }
+
+    function getWelcomeBackText(name) {
+        return `Selamat datang kembali, <span class="username-highlight">${name}</span>`;
+    }
+
+    function showLoading(callback) {
+        const overlay = document.createElement('div');
+        overlay.className = 'loading-overlay';
+        const spinner = document.createElement('div');
+        spinner.className = 'loading-spinner';
+        const textEl = document.createElement('div');
+        textEl.className = 'loading-text';
+        textEl.innerText = 'Menganalisis profil nutrisi...';
+        overlay.appendChild(spinner);
+        overlay.appendChild(textEl);
+        document.body.appendChild(overlay);
+        
+        const steps = [
+            'Menganalisis profil nutrisi...',
+            'Memeriksa tujuan fitness...',
+            'Mengoptimalkan menu hemat...',
+            'Menyusun rekomendasi...'
+        ];
+        let idx = 0;
+        const interval = setInterval(() => {
+            idx = (idx + 1) % steps.length;
+            textEl.innerText = steps[idx];
+        }, 800);
+        
+        setTimeout(() => {
+            clearInterval(interval);
+            overlay.remove();
+            callback();
+        }, 2500);
+    }
+    
+    function getFilteredMenus(excludeIds = []) {
+        if (!allMenus.length || !userProfile) return [];
+        const dislikeSet = new Set(userProfile.dislikes.map(d => d.toLowerCase()));
+        return allMenus.filter(menu => {
+            if (!menu.goal.includes(userProfile.goal)) return false;
+            if (menu.budget !== userProfile.budget) return false;
+            for (let ing of menu.ingredients) {
+                if (dislikeSet.has(ing.toLowerCase())) return false;
+            }
+            if (excludeIds.includes(menu.id)) return false;
+            return true;
+        });
+    }
+
+    function selectMenuWithPreference(candidates) {
+        if (!candidates.length) return null;
+        const likedIds = Object.entries(ratings).filter(([_, val]) => val === 'like').map(([id]) => parseInt(id));
+        if (likedIds.length === 0) {
+            return candidates[Math.floor(Math.random() * candidates.length)];
+        }
+        const scored = candidates.map(menu => {
+            let score = 0;
+            for (let likedId of likedIds) {
+                const liked = allMenus.find(m => m.id === likedId);
+                if (liked) {
+                    if (menu.budget === liked.budget) score += 1;
+                    if (menu.goal.some(g => liked.goal.includes(g))) score += 2;
+                    const common = menu.ingredients.filter(i => liked.ingredients.includes(i)).length;
+                    score += common;
+                }
+            }
+            return { menu, score };
+        });
+        const maxScore = Math.max(...scored.map(s => s.score));
+        const best = scored.filter(s => s.score === maxScore).map(s => s.menu);
+        return best[Math.floor(Math.random() * best.length)];
+    }
+
+    function getNewMenu() {
+        let eligible = getFilteredMenus(last7Ids);
+        let attempts = 0;
+        while (eligible.length === 0 && last7Ids.length > 0 && attempts < 7) {
+            last7Ids.shift();
+            eligible = getFilteredMenus(last7Ids);
+            attempts++;
+        }
+        if (eligible.length === 0) return null;
+        return selectMenuWithPreference(eligible);
+    }
+
+    function displayMenu(menu) {
+        if (!menu) {
+            menuArea.style.display = 'none';
+            noMenuDiv.style.display = 'block';
+            currentMenu = null;
+            return;
+        }
+        currentMenu = menu;
+        menuArea.style.display = 'block';
+        noMenuDiv.style.display = 'none';
+        mealListDiv.innerHTML = `
+            <div class="meal-card"><div class="meal-time">Pagi</div><div class="meal-desc">${menu.pagi || "Sarapan sehat"}</div></div>
+            <div class="meal-card"><div class="meal-time">Siang</div><div class="meal-desc">${menu.siang || "Makan siang bergizi"}</div></div>
+            <div class="meal-card"><div class="meal-time">Sore</div><div class="meal-desc">${menu.sore || "Cemilan sehat"}</div></div>
+            <div class="meal-card"><div class="meal-time">Malam</div><div class="meal-desc">${menu.malam || "Makan malam ringan"}</div></div>
+        `;
+        if (!last7Ids.includes(menu.id)) {
+            last7Ids.push(menu.id);
+            if (last7Ids.length > 7) last7Ids.shift();
+            localStorage.setItem('mylife_last7', JSON.stringify(last7Ids));
+        }
+    }
+    function generateNewMenu() {
+        if (!allMenus.length || !userProfile) return;
+        showLoading(() => {
+            const newMenu = getNewMenu();
+            if (newMenu) displayMenu(newMenu);
+            else {
+                menuArea.style.display = 'none';
+                noMenuDiv.style.display = 'block';
+                currentMenu = null;
+            }
+        });
+    }
+    function saveRating(value) {
+        if (!currentMenu) return;
+        ratings[currentMenu.id] = value;
+        localStorage.setItem('mylife_ratings', JSON.stringify(ratings));
+        alert(`Rating "${value}" disimpan`);
+    }
+    function saveFavorite() {
+        if (!currentMenu) return;
+        if (!favorites.includes(currentMenu.id)) {
+            favorites.push(currentMenu.id);
+            localStorage.setItem('mylife_favorites', JSON.stringify(favorites));
+            alert('Menu ditambahkan ke favorit');
+        } else {
+            alert('Menu sudah ada di favorit');
+        }
+    }
+
+    function showFavorites() {
+        if (!allMenus.length) return;
+        const container = document.getElementById('favoriteList');
+        if (favorites.length === 0) {
+            container.innerHTML = '<p class="text-secondary">Belum ada menu favorit.</p>';
+        } else {
+            container.innerHTML = '';
+            favorites.forEach(fid => {
+                const m = allMenus.find(x => x.id === fid);
+                if (m) {
+                    const div = document.createElement('div');
+                    div.className = 'favorite-item';
+                    div.innerHTML = `
+                        <div><strong>#${m.id}</strong> - ${m.goal[0]} | ${m.budget}</div>
+                        <div class="meal-desc" style="font-size:0.8rem">🌅 ${m.pagi} | ☀️ ${m.siang} | 🍎 ${m.sore} | 🌙 ${m.malam}</div>
+                        <button class="btn-outline-sm remove-fav" data-id="${m.id}" style="margin-top:6px;">Hapus</button>
+                    `;
+                    container.appendChild(div);
+                }
+            });
+            document.querySelectorAll('.remove-fav').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = parseInt(btn.dataset.id);
+                    favorites = favorites.filter(f => f !== id);
+                    localStorage.setItem('mylife_favorites', JSON.stringify(favorites));
+                    showFavorites();
+                });
+            });
+        }
+        modal.style.display = 'flex';
+    }
+
+    function fullReset() {
+        localStorage.clear();
+        location.reload();
+    }
+
+    function initDashboardFromStorage() {
+        const storedUser = localStorage.getItem('mylife_user');
+        if (!storedUser) return false;
+        userProfile = JSON.parse(storedUser);
+        const storedLast7 = localStorage.getItem('mylife_last7');
+        if (storedLast7) last7Ids = JSON.parse(storedLast7);
+        const storedRatings = localStorage.getItem('mylife_ratings');
+        if (storedRatings) ratings = JSON.parse(storedRatings);
+        const storedFav = localStorage.getItem('mylife_favorites');
+        if (storedFav) favorites = JSON.parse(storedFav);
+        
+        greetingLine.innerHTML = getWelcomeBackText(userProfile.name);
+        subTextLine.innerText = "";
+        
+        onboardingDiv.style.display = 'none';
+        dashboardDiv.style.display = 'block';
+        menuArea.style.display = 'none';
+        noMenuDiv.style.display = 'none';
+        return true;
+    }
+
+    function setupOnboarding() {
+        const dislikeItems = ["Telur","Tempe","Tahu","Tuna","Oatmeal","Bayam","Brokoli","Kangkung","Roti Gandum"];
+        const container = document.getElementById('dislikesContainer');
+        container.innerHTML = '';
+        dislikeItems.forEach(item => {
+            const chip = document.createElement('div');
+            chip.className = 'chip';
+            chip.innerText = item;
+            chip.dataset.value = item.toLowerCase();
+            chip.addEventListener('click', () => chip.classList.toggle('active'));
+            container.appendChild(chip);
+        });
+
+        document.getElementById('onboardingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('userName').value.trim();
+            if (!name) return alert('Nama wajib diisi');
+            const goal = document.getElementById('userGoal').value;
+            const budget = document.getElementById('userBudget').value;
+            const dislikes = Array.from(document.querySelectorAll('#dislikesContainer .chip.active')).map(c => c.dataset.value);
+            userProfile = { name, goal, budget, dislikes };
+            localStorage.setItem('mylife_user', JSON.stringify(userProfile));
+            greetingLine.innerHTML = getWelcomeBackText(name);
+            subTextLine.innerText = "";
+            onboardingDiv.style.display = 'none';
+            dashboardDiv.style.display = 'block';
+            menuArea.style.display = 'none';
+            noMenuDiv.style.display = 'none';
+        });
+    }
+
+    async function loadApp() {
+        try {
+            const res = await fetch('menus.json');
+            if (!res.ok) throw new Error('menus.json tidak ditemukan');
+            allMenus = await res.json();
+            const storedUser = localStorage.getItem('mylife_user');
+            if (storedUser) {
+                initDashboardFromStorage();
+            } else {
+                onboardingDiv.style.display = 'block';
+                dashboardDiv.style.display = 'none';
+                setupOnboarding();
+            }
+        } catch (err) {
+            alert('Gagal memuat menus.json. Pastikan file ada di folder yang sama.');
+            console.error(err);
+        }
+    }
+
+    startBtn?.addEventListener('click', generateNewMenu);
+    anotherBtn?.addEventListener('click', generateNewMenu);
+    saveFavBtn?.addEventListener('click', saveFavorite);
+    viewFavBtn?.addEventListener('click', showFavorites);
+    resetBtn?.addEventListener('click', fullReset);
+    if (forceReset) forceReset.addEventListener('click', fullReset);
+    closeModal?.addEventListener('click', () => modal.style.display = 'none');
+    window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+    rateLikeBtn?.addEventListener('click', () => saveRating('like'));
+    rateOkBtn?.addEventListener('click', () => saveRating('ok'));
+    rateDislikeBtn?.addEventListener('click', () => saveRating('dislike'));
+
+    loadApp();
+</script>
+</body>
+</html>
